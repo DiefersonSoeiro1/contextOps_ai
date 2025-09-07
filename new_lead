@@ -1,0 +1,1319 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90d1160c-eb63-49a9-aa3a-51ce06ba6365",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "289f7df2-5a83-4182-94cb-dd8970b7dc60",
+              "name": "full_name",
+              "value": "={{ $json.body.full_name }}",
+              "type": "string"
+            },
+            {
+              "id": "9de508e8-b943-40dd-96c2-a8a631336e05",
+              "name": "country_iso2",
+              "value": "={{ $json.body.country_iso2 }}",
+              "type": "string"
+            },
+            {
+              "id": "78f8a642-4e2e-4988-970d-59e5897da272",
+              "name": "notes",
+              "value": "={{ $json.body.notes }}",
+              "type": "string"
+            },
+            {
+              "id": "d0e64afd-8395-410d-8e39-4131ef85f446",
+              "name": "utm_campaign",
+              "value": "={{ $json.query.utm_campaign }}",
+              "type": "string"
+            },
+            {
+              "id": "030014f9-ed15-40c0-a40d-7b4404d7b66b",
+              "name": "utm_source",
+              "value": "={{ $json.query.utm_source }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        -240
+      ],
+      "id": "8cbada8a-2ae5-44d9-a387-d8a469d329cb",
+      "name": "Normalização de dados"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        -240
+      ],
+      "id": "ec35909b-6597-4014-a39f-2af29148bb99",
+      "name": "Webhook - new-lead",
+      "webhookId": "5f1c2116-a9c2-4f9a-9020-a6121dd53a41",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "TyCvU29dEggTU0Zp",
+          "name": "Header Auth - ContextOps"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "ContextOps AI - leads",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Normalização de dados').item.json.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        512,
+        -368
+      ],
+      "id": "25f893db-ba85-454a-b170-c09daa241f15",
+      "name": "GET - pesquisa lead | supabase",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "typeName": "Leads",
+        "returnAll": true,
+        "options": {
+          "filters": {
+            "filter": [
+              {
+                "key": "email",
+                "constraint_type": "equals",
+                "value": "={{ $('Normalização de dados').item.json.email }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        -368
+      ],
+      "id": "bc53811c-1b62-4543-85ce-9bb337069998",
+      "name": "GET - pesquisa lead | bubble",
+      "alwaysOutputData": true,
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "typeName": "Leads",
+        "properties": {
+          "property": [
+            {
+              "key": "email",
+              "value": "={{ $('Normalização de dados').item.json.email }}"
+            },
+            {
+              "key": "full_name",
+              "value": "={{ $('Normalização de dados').item.json.full_name }}"
+            },
+            {
+              "key": "country_iso2",
+              "value": "={{ $('Normalização de dados').item.json.country_iso2 }}"
+            },
+            {
+              "key": "notes",
+              "value": "={{ $('Normalização de dados').item.json.notes }}"
+            },
+            {
+              "key": "utm_campaign",
+              "value": "={{ $('Normalização de dados').item.json.utm_campaign }}"
+            },
+            {
+              "key": "source",
+              "value": "={{ $('Normalização de dados').item.json.utm_source }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        -192
+      ],
+      "id": "b118c716-2a04-4545-8d5a-d4a530691c95",
+      "name": "POST - cria lead | bubble",
+      "alwaysOutputData": true,
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "ContextOps AI - leads",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Normalização de dados').item.json.email }}"
+            },
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $('Normalização de dados').item.json.full_name }}"
+            },
+            {
+              "fieldId": "country_iso2",
+              "fieldValue": "={{ $('Normalização de dados').item.json.country_iso2 }}"
+            },
+            {
+              "fieldId": "notes",
+              "fieldValue": "={{ $('Normalização de dados').item.json.notes }}"
+            },
+            {
+              "fieldId": "utm_campaign",
+              "fieldValue": "={{ $('Normalização de dados').item.json.utm_campaign }}"
+            },
+            {
+              "fieldId": "source",
+              "fieldValue": "={{ $('Normalização de dados').item.json.utm_source }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        944,
+        -128
+      ],
+      "id": "aa1e2a59-a132-4765-bc53-3e1c5c979155",
+      "name": "CREATE - cria lead | supabase",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4fafc43d-88a4-46e9-a120-5ea4ac6eb6c6",
+              "leftValue": "={{ $('If - lead existe | supabase').item.json.owner }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        -384
+      ],
+      "id": "26092b00-aa21-47f1-82d1-47d17f713ba4",
+      "name": "If- owner existe | supabase"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "587f5529-9018-4d28-af77-b8a65622e5e8",
+              "leftValue": "={{ $('GET - pesquisa lead | supabase').item.json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        -368
+      ],
+      "id": "39761498-5514-44a4-bf33-a20c5cdafc61",
+      "name": "If - lead existe | supabase"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Normalização de dados').item.json.country_iso2 }}",
+                    "rightValue": "=BR",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "263cf3f2-3381-4042-a595-d74e5dbbc798"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "BR"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5aba76f3-ee75-41df-8e21-ec1d446b627b",
+                    "leftValue": "={{ $('Normalização de dados').item.json.country_iso2 }}",
+                    "rightValue": "US",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "US"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1088,
+        -784
+      ],
+      "id": "fe30e693-125e-45ea-a696-3ad07dcaaf1e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "ContextOps AI - leads",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $('Normalização de dados').item.json.email }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "owner",
+              "fieldValue": "=Maria"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        -960
+      ],
+      "id": "6fe6fed5-e1eb-49b3-a657-9a6e82fa8d75",
+      "name": "UPDATE - adiciona owner - MARIA | supabase",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "ContextOps AI - leads",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $('Normalização de dados').item.json.email }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "owner",
+              "fieldValue": "=Josué"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        -768
+      ],
+      "id": "0f1079d7-2c8f-4e0d-81af-bebc8535b815",
+      "name": "UPDATE - adiciona owner - JOSUÉ | supabase1",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4fafc43d-88a4-46e9-a120-5ea4ac6eb6c6",
+              "leftValue": "={{ $('GET - pesquisa lead | bubble').item.json.owner }}",
+              "rightValue": "0",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2128,
+        -384
+      ],
+      "id": "3d9e72d6-6b29-4a00-8b0d-a318caf47155",
+      "name": "If- owner existe | supabase1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Normalização de dados').item.json.country_iso2 }}",
+                    "rightValue": "=BR",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "263cf3f2-3381-4042-a595-d74e5dbbc798"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "BR"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5aba76f3-ee75-41df-8e21-ec1d446b627b",
+                    "leftValue": "={{ $('Normalização de dados').item.json.country_iso2 }}",
+                    "rightValue": "US",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "US"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2288,
+        -784
+      ],
+      "id": "52f865e9-5e4e-4dc6-808f-f63745024273",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "587f5529-9018-4d28-af77-b8a65622e5e8",
+              "leftValue": "={{ $('GET - pesquisa lead | bubble').item.json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1840,
+        -368
+      ],
+      "id": "8742d955-cd7f-4d77-b815-9706fc1aa977",
+      "name": "If - lead existe | bubble"
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.srv997281.hstgr.cloud/webhook/enrichment",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $('Normalização de dados').item.json.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2752,
+        -368
+      ],
+      "id": "f2f2ef31-7ffb-404d-b257-f21e639d2d1e",
+      "name": "Enriquece dado",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "path": "enrichment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        16,
+        368
+      ],
+      "id": "40fc5b9e-0445-45ac-8f9e-da3646189b1f",
+      "name": "Webhook - enrichment",
+      "webhookId": "9e9591d8-b9e8-4eda-8e09-cdedd312adfc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d87c2a2c-f1c7-40d7-a24f-78dc30ca7d72",
+              "name": "phone",
+              "value": "123456789",
+              "type": "string"
+            },
+            {
+              "id": "72521173-6272-4642-8cf5-14f9f960c3f4",
+              "name": "company",
+              "value": "Test Company",
+              "type": "string"
+            },
+            {
+              "id": "e65d7955-eaa1-426e-82b9-f256a7add863",
+              "name": "email",
+              "value": "={{ $('Webhook - enrichment').item.json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        368
+      ],
+      "id": "251eeeef-9e30-43b4-a748-8fd677ee5daf",
+      "name": "Dados Exemplo - enrichment"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        432,
+        368
+      ],
+      "id": "dbeabddd-939d-47d4-84a8-7161e4e4cc70",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "typeName": "Leads",
+        "objectId": "={{ $('GET - pesquisa lead | bubble').item.json._id }}",
+        "properties": {
+          "property": [
+            {
+              "key": "owner",
+              "value": "Maria"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -960
+      ],
+      "id": "a6f9292e-20f4-4a57-abae-8e96227cff4a",
+      "name": "UPDATE - adiciona owner - MARIA | bubble",
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "typeName": "Leads",
+        "objectId": "={{ $('GET - pesquisa lead | bubble').item.json._id }}",
+        "properties": {
+          "property": [
+            {
+              "key": "owner",
+              "value": "Josué"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -768
+      ],
+      "id": "eb3d3c19-3e40-44bf-a106-3a9931e888d3",
+      "name": "UPDATE - adiciona owner - JOSUÉ | bubble",
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "ContextOps AI - leads",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $('Normalização de dados').item.json.email }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "owner",
+              "fieldValue": "=Miguel"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        -576
+      ],
+      "id": "58b599f3-ce5f-4771-ac06-02949fa96e25",
+      "name": "UPDATE - adiciona owner - MIGUEL| supabase",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "typeName": "Leads",
+        "objectId": "={{ $('GET - pesquisa lead | bubble').item.json._id }}",
+        "properties": {
+          "property": [
+            {
+              "key": "owner",
+              "value": "Miguel"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -576
+      ],
+      "id": "5cfed00d-9572-4b61-9ddc-6626279296ca",
+      "name": "UPDATE - adiciona owner - MIGUEL | bubble",
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Exemplo de enriquecimento de dados",
+        "height": 288,
+        "width": 672,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        256
+      ],
+      "id": "a6927b43-ad98-4552-9e16-387485a11655",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "ContextOps AI - leads",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $('Enriquece dado').item.json.email }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "enriched",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $json.company }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3072,
+        -624
+      ],
+      "id": "a9ab9611-1335-4e42-a305-2669199cdc1a",
+      "name": "UPDATE - enrichment (yes) | supabase",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "typeName": "Leads",
+        "objectId": "={{ $('GET - enrichment | bubble').item.json._id }}",
+        "properties": {
+          "property": [
+            {
+              "key": "phone",
+              "value": "={{ $('Enriquece dado').item.json.phone }}"
+            },
+            {
+              "key": "company",
+              "value": "={{ $('Enriquece dado').item.json.company }}"
+            },
+            {
+              "key": "enriched",
+              "value": "yes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        3504,
+        -624
+      ],
+      "id": "9c45b1d6-5b78-40bd-882f-5c4b0c70ee8d",
+      "name": "UPDATE - enrichment (yes) | bubble",
+      "alwaysOutputData": true,
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "typeName": "Leads",
+        "returnAll": true,
+        "options": {
+          "filters": {
+            "filter": [
+              {
+                "key": "email",
+                "constraint_type": "equals",
+                "value": "={{ $('Normalização de dados').item.json.email }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        3296,
+        -624
+      ],
+      "id": "8ec9b844-840b-41fa-aea8-bd3b64e3f1e6",
+      "name": "GET - enrichment | bubble",
+      "alwaysOutputData": true,
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "lead@empresa.com",
+        "toEmail": "sales.team@empresa.com",
+        "subject": "Novo negocio iniciado",
+        "emailFormat": "text",
+        "text": "=Novo lead no pipeline!\nNome:  {{ $('Normalização de dados').item.json.full_name }}\nEmail: {{ $('Normalização de dados').item.json.email }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        3824,
+        -352
+      ],
+      "id": "2406faae-48db-4785-9ced-ac7b6ef1c94b",
+      "name": "Send email",
+      "webhookId": "a337d621-770a-40f5-a573-33ee132d6f25",
+      "credentials": {
+        "smtp": {
+          "id": "zMWuA5nF6wX3GBol",
+          "name": "SMTP - sendgrid"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Normalização de dados": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - new-lead": {
+      "main": [
+        [
+          {
+            "node": "Normalização de dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET - pesquisa lead | supabase": {
+      "main": [
+        [
+          {
+            "node": "If - lead existe | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET - pesquisa lead | bubble": {
+      "main": [
+        [
+          {
+            "node": "If - lead existe | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST - cria lead | bubble": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CREATE - cria lead | supabase": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If- owner existe | supabase": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GET - pesquisa lead | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If - lead existe | supabase": {
+      "main": [
+        [
+          {
+            "node": "If- owner existe | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CREATE - cria lead | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "UPDATE - adiciona owner - MARIA | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "UPDATE - adiciona owner - JOSUÉ | supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "UPDATE - adiciona owner - MIGUEL| supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - adiciona owner - MARIA | supabase": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - adiciona owner - JOSUÉ | supabase1": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If- owner existe | supabase1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enriquece dado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "UPDATE - adiciona owner - MARIA | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "UPDATE - adiciona owner - JOSUÉ | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "UPDATE - adiciona owner - MIGUEL | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If - lead existe | bubble": {
+      "main": [
+        [
+          {
+            "node": "If- owner existe | supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "POST - cria lead | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enriquece dado": {
+      "main": [
+        [
+          {
+            "node": "UPDATE - enrichment (yes) | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - enrichment": {
+      "main": [
+        [
+          {
+            "node": "Dados Exemplo - enrichment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados Exemplo - enrichment": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - adiciona owner - MARIA | bubble": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - adiciona owner - JOSUÉ | bubble": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - adiciona owner - MIGUEL| supabase": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - adiciona owner - MIGUEL | bubble": {
+      "main": [
+        [
+          {
+            "node": "GET - pesquisa lead | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - enrichment (yes) | supabase": {
+      "main": [
+        [
+          {
+            "node": "GET - enrichment | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - enrichment (yes) | bubble": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET - enrichment | bubble": {
+      "main": [
+        [
+          {
+            "node": "UPDATE - enrichment (yes) | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {
+    "Webhook - enrichment": [
+      {
+        "headers": {
+          "host": "n8n.srv997281.hstgr.cloud",
+          "user-agent": "axios/1.8.3",
+          "content-length": "32",
+          "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+          "accept-encoding": "gzip, compress, deflate, br",
+          "content-type": "application/json",
+          "x-forwarded-for": "172.18.0.1",
+          "x-forwarded-host": "n8n.srv997281.hstgr.cloud",
+          "x-forwarded-port": "443",
+          "x-forwarded-proto": "https",
+          "x-forwarded-server": "c0e0d2290ce1",
+          "x-real-ip": "172.18.0.1"
+        },
+        "params": {},
+        "query": {},
+        "body": {
+          "email": "john.doe@example.com"
+        },
+        "webhookUrl": "https://n8n.srv997281.hstgr.cloud/webhook/enrichment",
+        "executionMode": "production"
+      }
+    ]
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b788b65bad2e4d254ad9d0bf5a144a284e462ef4c84b209bc2a5f556df3cb468"
+  }
+}
