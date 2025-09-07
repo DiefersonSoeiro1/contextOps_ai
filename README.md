@@ -43,8 +43,8 @@ WEBHOOK_AUTH_TOKEN=your_secure_token
 1. Acesse seu n8n
 2. Import → Upload from file
 3. Importe os arquivos:
-   - `ContextOPS AI - new lead.json`
-   - `ContextOPS AI - search.json`
+   - `ai_agent_search.json`
+   - `new_lead.json`
 4. Configure as credenciais necessárias:
    - Credencial de autenticação do webhook
    - Supabase
