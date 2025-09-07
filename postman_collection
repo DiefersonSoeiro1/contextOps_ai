@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "40425965-3b0b-4b10-8a36-c425e72c1fff",
+		"name": "ContextOps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39947503"
+	},
+	"item": [
+		{
+			"name": "New Lead",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer [credencial]",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"email\": \"ana.costa@example.com\",\r\n    \"full_name\": \"Ana Costa\",\r\n    \"country_iso2\": \"CA\",\r\n    \"notes\": \"Quero saber como usar o n8n para integrar diferentes sistemas do meu negócio.\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://[seu-url]/webhook/new-lead?utm_source=google&utm_campaign=lead_campaign",
+					"protocol": "https",
+					"host": [
+						"[seu-url]"
+					],
+					"path": [
+						"webhook",
+						"new-lead"
+					],
+					"query": [
+						{
+							"key": "utm_source",
+							"value": "google"
+						},
+						{
+							"key": "utm_campaign",
+							"value": "lead_campaign"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
