@@ -1,12 +1,20 @@
-Visão Geral
+# ContextOps AI - Lead Management System
+
 Sistema de gestão de leads com pipeline automatizado e agente de IA contextual usando n8n, Supabase, Bubble e Redis.
+
+## Visão Geral
+
 O sistema implementa:
-Pipeline de ingestão: Webhook para receber leads com validação, deduplicação e persistência dupla
-Agente de IA: Interface conversacional para consultas e gestão de leads
-Enriquecimento: API externa para complementar dados dos leads
-Notificações: Email automático para novos leads válidos
-Instalação e Configuração
-1. Variáveis de Ambiente (.env.example)
+- **Pipeline de ingestão**: Webhook para receber leads com validação, deduplicação e persistência dupla
+- **Agente de IA**: Interface conversacional para consultas e gestão de leads
+- **Enriquecimento**: API externa para complementar dados dos leads
+- **Notificações**: Email automático para novos leads válidos
+
+## Instalação e Configuração
+
+### 1. Variáveis de Ambiente (.env.example)
+
+```bash
 # Supabase
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
@@ -28,21 +36,28 @@ SMTP_PASS=your_sendgrid_key
 
 # Webhook Auth
 WEBHOOK_AUTH_TOKEN=your_secure_token
-2. Importação dos Workflows
-Acesse seu n8n
-Import → Upload from file
-Importe os arquivos:
-ContextOPS AI - new lead.json
-ContextOPS AI - search.json
-Configure as credenciais necessárias
-Credencial de autenticação do webhook 
-Supabase
-Bubble
-Redis
-Openai
-Email
-3. Estrutura do Banco (Supabase)
-Tabela: ContextOps AI - leads
+```
+
+### 2. Importação dos Workflows
+
+1. Acesse seu n8n
+2. Import → Upload from file
+3. Importe os arquivos:
+   - `ContextOPS AI - new lead.json`
+   - `ContextOPS AI - search.json`
+4. Configure as credenciais necessárias:
+   - Credencial de autenticação do webhook
+   - Supabase
+   - Bubble
+   - Redis
+   - OpenAI
+   - Email
+
+### 3. Estrutura do Banco (Supabase)
+
+Tabela: `ContextOps AI - leads`
+
+```sql
 CREATE TABLE "ContextOps AI - leads" (
   id SERIAL PRIMARY KEY,
   lead_id VARCHAR UNIQUE,
@@ -58,136 +73,123 @@ CREATE TABLE "ContextOps AI - leads" (
   enriched BOOLEAN DEFAULT false,
   created_at TIMESTAMP DEFAULT NOW()
 );
-Endpoints Disponíveis
-1. Ingestão de Leads
-POST https://your-n8n-url/webhook/new-lead
+```
+
+## Endpoints Disponíveis
+
+### 1. Ingestão de Leads
+
+**POST** `https://your-n8n-url/webhook/new-lead`
+
 Headers:
+```
 Authorization: Bearer your_webhook_token
 Content-Type: application/json
+```
+
 Body:
+```json
 {
   "email": "lead@example.com",
   "full_name": "Nome Completo",
   "country_iso2": "BR",
   "notes": "Notas sobre o lead"
 }
+```
+
 Query Parameters:
+```
 ?utm_source=google&utm_campaign=campaign_name
-Regras de Negócio
-Deduplicação
-Verifica existência por email em ambas as bases (Supabase e Bubble)
-Lead duplicado não é inserido novamente
-Roteamento de Owner
-BR: Maria
-US: Josué
-Outros países: Miguel
-Enriquecimento
-Chamada para endpoint externo com retry (5 tentativas)
-Se falhar, pipeline continua sem interrupção
-Adiciona campos: phone, company
-Marca enriched = true
-Para o enriquecimento, optei por criar um subworkflow no fluxo, para facilitar testes. Para simular falhas, basta desativar os nodes e rodar o fluxo. Para enriquecer os dados, precisa alterar as informações de phone e company no node "Dados Exemplo - enrichment".
-Notificações
-Email enviado para cada lead válido processado
-Template: Nome e email do lead
-Segurança
-Webhook protegido por Bearer token
-Dados sensíveis em variáveis de ambiente
-Validação de parâmetros nas consultas
-Sem exposição de PII em logs
-Agente de IA - Comandos
-Consultas Suportadas
+```
+
+### 2. Agente de IA
+
+**Chat Interface**: Integrada nos workflows do n8n via LangChain
+
+## Regras de Negócio
+
+### Deduplicação
+- Verifica existência por email em ambas as bases (Supabase e Bubble)
+- Lead duplicado não é inserido novamente
+
+### Roteamento de Owner
+- **BR**: Maria
+- **US**: Josué  
+- **Outros países**: Miguel
+
+### Enriquecimento
+- Chamada para endpoint externo com retry (5 tentativas)
+- Se falhar, pipeline continua sem interrupção
+- Adiciona campos: phone, company
+- Marca `enriched = true`
+- **Implementação**: Subworkflow no fluxo para facilitar testes
+- **Para simular falhas**: Desative os nodes e execute o fluxo
+- **Para enriquecer dados**: Altere informações no node "Dados Exemplo - enrichment"
+
+### Notificações
+- Email enviado para cada lead válido processado
+- Template: Nome e email do lead
+
+## Agente de IA
+
+### Prompt e Direcionamento
+
+Assistente comercial analítico focado em informações de leads para equipe comercial.
+
+**Funcionalidades:**
+- Coleta de informações de leads (nome, email, contagem por país/origem)
+- Consultas baseadas em notas
+- Alteração de owner de leads
+- Limpeza de histórico recente
+
+**Tools disponíveis:**
+- `clean`: Limpar contexto/coorte recente
+- `think`: Raciocínio entre processos
+- `get_info`: Consultar informações de leads
+- `change_owner`: Alterar responsável por lead
+
+### Consultas Suportadas
+```
 "Quantos leads temos do Brasil?"
 "Buscar lead por email: joão@empresa.com"
 "Leads com notas sobre IA"
 "Quantos leads da campanha X?"
 "Alterar owner do lead joão@empresa.com para Maria"
 "Quantos leads da origem X?"
-Estes são exemplos, mas a busca cobre as necessidades estabelecidas.
-Gestão de Contexto
-Memória de 20 mensagens por sessão, com duração de contexto de 3600 segundos (1 hora) - ajustável
-TTL configurável para coorte
-Confirmação obrigatória para alterações
-Segurança
-Webhook protegido por Bearer token
-Dados sensíveis em variáveis de ambiente
-Validação de parâmetros nas consultas
-Sem exposição de PII em logs
-Testes
+```
+
+### Gestão de Contexto
+- Memória de 20 mensagens por sessão
+- Duração de contexto: 3600 segundos (1 hora) - ajustável
+- TTL configurável para coorte
+- Confirmação obrigatória para alterações
+
+**Regras:**
+- Confirmação necessária para alteração de owner
+- Respostas concisas e diretas
+- Formato de data: dd/MM/yyyy
+- Apenas informações relacionadas a leads
+- Não inventa dados desconhecidos
+
+## Segurança
+
+- Webhook protegido por Bearer token
+- Dados sensíveis em variáveis de ambiente
+- Validação de parâmetros nas consultas
+- Sem exposição de PII em logs
+
+## Testes
+
 Use a coleção Postman incluída para testar:
-Ingestão básica: Lead novo válido
-Deduplicação: Mesmo email duas vezes
-Validação: Campos obrigatórios faltando
-Agente IA: Consultas diversas
-Alteração owner: Com confirmação
-Monitoramento
-Logs detalhados em cada etapa do pipeline
-Status de enriquecimento trackado
-Falhas de integração não param o fluxo
-Notificações de erro por email
-Limitações Implementadas
-Máximo 100 resultados por consulta
-Timeout de 30s para enriquecimento
-Rate limiting via Redis (se configurado)
-Validação rigorosa de parâmetros de entrada
+1. Ingestão básica: Lead novo válido
+2. Deduplicação: Mesmo email duas vezes
+3. Validação: Campos obrigatórios faltando
+4. Agente IA: Consultas diversas
+5. Alteração owner: Com confirmação
 
-Prompt e direcionamento: 
-# Agente
-Você é um assistente comercial, altamente analítico, que traz informações sobre os leads cadastrados para a equipe comercial, com intuito de simplificar ao máximo a análise de dados. 
+### Dados de Teste
 
-# Visão geral
-Você vai receber como input uma solicitação do usuário, que será enquadrada dentro de algum desses tópicos: 
-* Coleta de informações de leads, que pode ser relacionado aos temas abaixo:
-  1. Nome
-  2. Email
-  3. Contagem por país
-  4. Contagem por source (origem)
-  5. Informações de leads, com base nas notas.
-
-* Alteração de informações de leads:
-  1. Alteração de owner de um lead.
-
-* Limpeza de histórico recente
-
-# Tools
-  * clean: use sempre que o usuário quiser limpar o contexto / coorte recente.
-  * think: use sempre, entre cada processo, para raciocinar e garantir que a próxima ação é a mais apropriada.
-  * get_info: use essa tool quando o usuário solicitar informações de leads
-  * change_owner: use essa tool quando o usuário pedir pra você alterar o responsável (owner) de um lead. 
-
-# Processo de trabalho: 
-  1. Receba a solicitação do usuário e busque compreender o contexto internamente. 
-  2. Use a tool 'think' para garantir que próximo passo do seu fluxo é realmente o mais adequado.
-  3. Escolha entre a tool 'get_info' e 'change_owner', a depender da intenção e necessidade que o usuário trouxe.
-  4. Execute a ação necessária
-  5. Retorne ao usuário.
-
-**Importante**
-- No caso de alteração de owner, sempre fale que é uma ação sensível e peça confirmação. Para confirmar, o usuário pode te dizer somente um "sim".
-- Caso você precise trabalhar com datas, use a data de hoje {{ $now }}, como padrão para se situar.
-- Você deve usar as informações que você tem coletadas no seu contexto para fazer as alterações que o usuário pediu sem precisar solicitar dados que você já tem. 
-
-
-# Saída esperada
-Respostas curtas, especificamente respondendo o que o usuário pergunta.
-
-  * Exemplo 01: 
-    * Pergunta: "Quantos leads temos no Brasil na última semana?"
-    * Resposta: "[Total de leads]"
-
-  * Exemplo 02: 
-    * Pergunta: "Quantos leads tme a Maria?"
-    * Resposta: "[Total de leads]"
-
-
-# Regras
-  - No caso de o usuário perguntar algo relacionado a datas, use como padrão de resposta formato de data 'dd/MM/yyyy'
-  - Você não altera owner sem confirmação prévia do usuário.
-  - Você só responde coisas relacionadas a leads, seguindo instruções que você recebeu. Não invente ou crie respostas.
-  - Você só responde o que sabe. Se a informação é duvidosa ou você não tem certeza, você diz que não tem informação sobre o assunto.
-Dados de exemplo e testes: 
-Collection postman: 
-Dados teste para uso: 
+```json
 [
   {
     "email": "maria.souza@example.com",
@@ -220,4 +222,18 @@ Dados teste para uso:
     "notes": "Quero detalhes sobre automações no n8n para processos de marketing digital."
   }
 ]
+```
 
+## Monitoramento
+
+- Logs detalhados em cada etapa do pipeline
+- Status de enriquecimento trackado
+- Falhas de integração não param o fluxo
+- Notificações de erro por email
+
+## Limitações Implementadas
+
+- Máximo 100 resultados por consulta
+- Timeout de 30s para enriquecimento
+- Rate limiting via Redis (se configurado)
+- Validação rigorosa de parâmetros de entrada
