@@ -1,0 +1,490 @@
+{
+  "name": "ContextOPS AI - search",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1f81a70c-27f1-4abb-b17f-0b75108e2eef",
+      "name": "When chat message received",
+      "webhookId": "fb2b0b9f-501b-4b23-9059-99e8d1683fed"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        1136,
+        224
+      ],
+      "id": "87d5b71e-7036-4f16-a28a-a60d7e458b25",
+      "name": "think"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "ContextOps AI - leads",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        736,
+        224
+      ],
+      "id": "65eb1d80-47af-4d2a-b40f-1c574fc678a3",
+      "name": "get_info",
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        224
+      ],
+      "id": "bd4e2289-4fe0-4cec-a391-1e19fb21d973",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "LBdHFVGvPk0wwIUh",
+          "name": "OpenAi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use quando o responsável quiser alterar o owner/responsável pelo lead. Busque informações desse ",
+        "method": "POST",
+        "url": "https://n8n.srv997281.hstgr.cloud/webhook/change_owner",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "novo_owner",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', `Use para enviar informações sobre o nome do novo owner do lead`, 'string') }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', `Use para enviar o email do lead.`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        224
+      ],
+      "id": "5011e2b6-5aa3-46eb-8625-c3d2b0979103",
+      "name": "change_owner"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "14520ade-2076-4d17-8f3b-9bb62bc697d8",
+              "name": "novo_owner",
+              "value": "={{ $json.body.novo_owner }}",
+              "type": "string"
+            },
+            {
+              "id": "3e7cc195-19ca-4c12-b005-a5bded35f556",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        480
+      ],
+      "id": "a6232db3-35e1-4d5b-ae1f-9a9cf2bec77f",
+      "name": "Normaliação de dados - change_owner"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1072,
+        480
+      ],
+      "id": "e1d29049-b916-4c8e-ae22-d416bfe39397",
+      "name": "Respond - chanve_owner"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "change_owner",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        32,
+        480
+      ],
+      "id": "1aa9b415-3aee-4f18-a8f3-bcaef81f4815",
+      "name": "Webhook - change_owner",
+      "webhookId": "755bfbd5-c408-4652-8acb-779367142a68"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "typeName": "Leads",
+        "returnAll": true,
+        "options": {
+          "filters": {
+            "filter": [
+              {
+                "key": "email",
+                "constraint_type": "equals",
+                "value": "={{ $('Normaliação de dados - change_owner').item.json.email }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        656,
+        480
+      ],
+      "id": "0f3ce322-94ee-4ee0-b872-2916f85c1758",
+      "name": "GET leads - bubble",
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "typeName": "Leads",
+        "objectId": "={{ $json._id }}",
+        "properties": {
+          "property": [
+            {
+              "key": "owner",
+              "value": "={{ $('Normaliação de dados - change_owner').item.json.novo_owner }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.bubble",
+      "typeVersion": 1,
+      "position": [
+        864,
+        480
+      ],
+      "id": "270ea36c-8fc2-4f57-bc51-7763d5226683",
+      "name": "UPDATE - change_owner | bubble",
+      "credentials": {
+        "bubbleApi": {
+          "id": "RRYOhqSXS7UFLf1S",
+          "name": "Bubble - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "ContextOps AI - leads",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $('Normaliação de dados - change_owner').item.json.email }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "owner",
+              "fieldValue": "={{ $('Normaliação de dados - change_owner').item.json.novo_owner }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        448,
+        480
+      ],
+      "id": "37bc854e-d311-41cc-9361-6c27b94a6e5d",
+      "name": "UPDATE - change_owner | supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "RaINLHdE1g4fgPqg",
+          "name": "Supabase - ContextOps AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=# Agente\nVocê é um assistente comercial, altamente analítico, que traz informações sobre os leads cadastrados para a equipe comercial, com intuito de simplificar ao máximo a análise de dados. \n\n# Visão geral\nVocê vai receber como input uma solicitação do usuário, que será enquadrada dentro de algum desses tópicos: \n* Coleta de informações de leads, que pode ser relacionado aos temas abaixo:\n  1. Nome\n  2. Email\n  3. Contagem por país\n  4. Contagem por source (origem)\n  5. Informações de leads, com base nas notas.\n\n* Alteração de informações de leads:\n  1. Alteração de owner de um lead.\n\n* Limpeza de histórico recente\n\n\n# Tools\n  * clean: use sempre que o usuário quiser limpar o contexto / coorte recente.\n  * think: use sempre, entre cada processo, para raciocinar e garantir que a próxima ação é a mais apropriada.\n  * get_info: use essa tool quando o usuário solicitar informações de leads\n  * change_owner: use essa tool quando o usuário pedir pra você alterar o responsável (owner) de um lead. \n\n# Processo de trabalho: \n  1. Receba a solicitação do usuário e busque compreender o contexto internamente. \n  2. Use a tool 'think' para garantir que próximo passo do seu fluxo é realmente o mais adequado.\n  3. Escolha entre a tool 'get_info' e 'change_owner', a depender da intenção e necessidade que o usuário trouxe.\n  4. Execute a ação necessária\n  5. Retorne ao usuário.\n\n**Importante**\n- No caso de alteração de owner, sempre fale que é uma ação sensível e peça confirmação. Para confirmar, o usuário pode te dizer somente um \"sim\".\n- Caso você precise trabalhar com datas, use a data de hoje {{ $now }}, como padrão para se situar.\n- Você deve usar as informações que você tem coletadas no seu contexto para fazer as alterações que o usuário pediu sem precisar solicitar dados que você já tem. \n\n\n# Saída esperada\nRespostas curtas, especificamente respondendo o que o usuário pergunta.\n\n  * Exemplo 01: \n    * Pergunta: \"Quantos leads temos no Brasil na última semana?\"\n    * Resposta: \"[Total de leads]\"\n\n  * Exemplo 02: \n    * Pergunta: \"Quantos leads tme a Maria?\"\n    * Resposta: \"[Total de leads]\"\n\n\n# Regras\n  - No caso de o usuário perguntar algo relacionado a datas, use como padrão de resposta formato de data 'dd/MM/yyyy'\n  - Você não altera owner sem confirmação prévia do usuário.\n  - Você só responde coisas relacionadas a leads, seguindo instruções que você recebeu. Não invente ou crie respostas.\n  - Você só responde o que sabe. Se a informação é duvidosa ou você não tem certeza, você diz que não tem informação sobre o assunto."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "318c0dbf-a837-4899-ba99-a35278116fec",
+      "name": "AI Agente - lead info"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bad8edbb-fce8-472e-84b9-45d3e0fadf49",
+              "name": "sessionId",
+              "value": "={{ $json.sessionId }}",
+              "type": "string"
+            },
+            {
+              "id": "f274b153-a7d9-4454-ad23-0b628a74670c",
+              "name": "chatInput",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1ad645f7-478c-46d9-945d-44f52be19520",
+      "name": "Normalização de dados - lead info"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Normalização de dados - lead info').item.json.sessionId }}"
+      },
+      "type": "n8n-nodes-base.redisTool",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        224
+      ],
+      "id": "791e5add-a632-44bf-8fec-cc2b6ae183e9",
+      "name": "clean"
+    },
+    {
+      "parameters": {
+        "sessionTTL": 3600,
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.5,
+      "position": [
+        576,
+        224
+      ],
+      "id": "5fc6e842-34c4-46dc-96ca-57e67028b55f",
+      "name": "Redis - lead info"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Normalização de dados - lead info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_info": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "change_owner": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normaliação de dados - change_owner": {
+      "main": [
+        [
+          {
+            "node": "UPDATE - change_owner | supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - change_owner": {
+      "main": [
+        [
+          {
+            "node": "Normaliação de dados - change_owner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET leads - bubble": {
+      "main": [
+        [
+          {
+            "node": "UPDATE - change_owner | bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - change_owner | bubble": {
+      "main": [
+        [
+          {
+            "node": "Respond - chanve_owner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE - change_owner | supabase": {
+      "main": [
+        [
+          {
+            "node": "GET leads - bubble",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalização de dados - lead info": {
+      "main": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis - lead info": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agente - lead info",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "728aca0f-0c4e-4354-a068-896b189caf24",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b788b65bad2e4d254ad9d0bf5a144a284e462ef4c84b209bc2a5f556df3cb468"
+  },
+  "id": "W5ax4gDrTaHO4fgE",
+  "tags": []
+}
