@@ -104,13 +104,13 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                Mais contexto para vender
+                Automação de entrada comercial para inbound B2B
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 gradient-text">
-                Seu time comercial recebe o lead já <span className="text-foreground">pesquisado</span> e <span className="text-foreground">priorizado</span>
+                Cada lead do seu site chega no CRM <span className="text-foreground">pronto para vender</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Quando um lead entra no formulário do seu site, a plataforma busca contexto da empresa, organiza as informações mais relevantes e envia tudo para o CRM com mais clareza para a equipe agir rápido.
+                A ContextOps AI recebe o lead, pesquisa a empresa, organiza os sinais mais relevantes e entrega um resumo comercial com prioridade e próximo passo para o seu time agir rápido.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-base h-14 px-8 shadow-xl shadow-primary/20 hover-elevate">
@@ -121,9 +121,9 @@ export default function Home() {
                 </Button>
               </div>
               <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-muted-foreground">
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Mais contexto para vender</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Menos pesquisa manual</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Melhor priorização</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Pesquisa automática da empresa</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Resumo comercial pronto</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> CRM com contexto e próximo passo</span>
               </div>
             </motion.div>
 
@@ -161,9 +161,9 @@ export default function Home() {
         <section id="produto" className="py-24 bg-white px-4 border-y border-border/40">
           <div className="max-w-6xl mx-auto">
             <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Uma camada de inteligência para leads inbound</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">A plataforma que trata o lead antes de ele cair cru no CRM</h2>
               <p className="text-lg text-muted-foreground">
-                A solução fica entre o formulário do seu site e o CRM da sua operação. Ela recebe o lead, busca dados complementares, organiza um resumo comercial e ajuda sua equipe a entender mais rápido quem vale atenção primeiro.
+                A solução fica entre o formulário do seu site e o CRM da sua operação. Assim que o lead entra, ela pesquisa a empresa, organiza o contexto comercial e entrega tudo de forma clara para o time comercial agir com mais velocidade.
               </p>
             </motion.div>
 
@@ -233,17 +233,45 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. PROBLEM SECTION */}
+        {/* 5. HOW IT WORKS SECTION */}
         <section id="funciona" className="py-24 px-4 bg-white border-y border-border/40">
           <div className="max-w-6xl mx-auto">
             <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">O problema não é falta de lead. É falta de contexto no momento certo.</h2>
-              <p className="text-lg text-muted-foreground">
-                Em muitas operações, o lead entra e o time precisa parar para pesquisar manualmente antes de agir. Isso consome tempo, atrasa o contato e reduz a qualidade da priorização.
-              </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Do formulário ao CRM, sem pesquisa manual no meio</h2>
             </motion.div>
             
-            <FlowComparison />
+            <div className="relative max-w-2xl mx-auto">
+              {/* Vertical line */}
+              <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-primary/30 to-transparent" />
+              <div className="space-y-6">
+                {[
+                  { step: 1, text: "O lead entra pelo seu site", icon: Search },
+                  { step: 2, text: "A plataforma pesquisa a empresa e os sinais relevantes", icon: BrainCircuit },
+                  { step: 3, text: "Monta um resumo comercial objetivo", icon: ListFilter },
+                  { step: 4, text: "Define prioridade e próximo passo", icon: Target },
+                  { step: 5, text: "Entrega tudo no CRM ou fluxo de atendimento", icon: SendToBack },
+                ].map(({ step, text, icon: Icon }, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="relative flex items-center gap-6 pl-2"
+                  >
+                    <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-sm shadow-[0_0_18px_rgba(173,255,47,0.35)] shrink-0">
+                      {step}
+                    </div>
+                    <div className="flex items-center gap-4 flex-1 bg-white border border-border/50 rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Icon className="h-4 w-4 text-primary-foreground" />
+                      </div>
+                      <span className="font-medium text-foreground">{text}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -251,27 +279,27 @@ export default function Home() {
         <section className="py-24 px-4 bg-muted/30">
           <div className="max-w-6xl mx-auto">
             <motion.div {...fadeIn} className="mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-center">O ganho para a operação</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-center">O que muda na prática</h2>
             </motion.div>
 
             <motion.div 
               variants={staggerChildren}
               initial="initial"
               whileInView="whileInView"
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
             >
               {[
-                { icon: Clock, title: "Menos tempo gasto", desc: "Reduza drasticamente o tempo gasto pesquisando leads manualmente." },
-                { icon: Zap, title: "Mais velocidade", desc: "Aumente a velocidade no primeiro contato com as informações na mão." },
-                { icon: Filter, title: "Melhor triagem", desc: "Triagem comercial mais assertiva baseada em dados reais e atualizados." },
-                { icon: BrainCircuit, title: "Mais contexto", desc: "Abordagem inicial personalizada e relevante desde o primeiro email." },
-                { icon: Target, title: "Foco no potencial", desc: "Energia da equipe direcionada para os leads com maior potencial de fechamento." },
-                { icon: Workflow, title: "Consistência", desc: "Um processo de inbound mais padronizado, escalável e consistente." }
+                { icon: Clock, title: "Seu time para de perder tempo pesquisando cada lead", desc: "A pesquisa acontece automaticamente, antes de qualquer pessoa precisar agir." },
+                { icon: Zap, title: "O primeiro contato acontece com mais contexto", desc: "O vendedor já sabe com quem está falando antes de abrir o CRM." },
+                { icon: ListFilter, title: "A operação ganha mais clareza para decidir quem atender primeiro", desc: "Com prioridade e próximo passo definidos, fica fácil saber por onde começar." },
+                { icon: Workflow, title: "O inbound fica mais consistente, sem depender de improviso", desc: "Um processo padronizado que funciona igual para todo lead que entra." }
               ].map((benefit, i) => (
                 <motion.div key={i} variants={itemAnim}>
                   <Card className="h-full bg-white border-border/50 hover-elevate">
                     <CardContent className="p-6">
-                      <benefit.icon className="h-8 w-8 text-primary mb-4" />
+                      <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                        <benefit.icon className="h-5 w-5 text-primary-foreground" />
+                      </div>
                       <h3 className="font-bold text-lg mb-2">{benefit.title}</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">{benefit.desc}</p>
                     </CardContent>
@@ -417,9 +445,9 @@ export default function Home() {
 
             {/* Differentiator */}
             <motion.div {...fadeIn} className="flex flex-col justify-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Não é só dado. É contexto para decisão comercial.</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Não entrega só dados. Entrega clareza para agir.</h2>
               <p className="text-lg text-muted-foreground mb-10">
-                A diferença não está apenas em adicionar campos ao lead. Está em ajudar sua equipe a entender mais rápido com quem está falando e como priorizar o atendimento.
+                A diferença não está em adicionar mais campos ao cadastro. Está em mostrar para o comercial quem entrou, por que vale atenção e qual deve ser o próximo passo.
               </p>
               
               <div className="grid gap-6">
@@ -506,10 +534,10 @@ export default function Home() {
                 <Zap className="w-8 h-8 text-primary" />
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight">
-                Se seu time ainda pesquisa manualmente cada lead que entra, já existe uma forma melhor de operar.
+                Pare de mandar cadastro cru para o comercial
               </h2>
               <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Veja como sua operação pode receber leads inbound com mais contexto, mais prioridade e mais clareza desde o primeiro momento.
+                Veja como cada lead pode entrar no CRM com empresa identificada, resumo comercial e orientação de atendimento desde o primeiro segundo.
               </p>
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg h-16 px-10 rounded-full shadow-[0_0_40px_rgba(173,255,47,0.3)] hover:shadow-[0_0_60px_rgba(173,255,47,0.4)] hover:-translate-y-1 transition-all duration-300">
                 Agendar demonstração <ArrowRight className="ml-2 w-6 h-6" />

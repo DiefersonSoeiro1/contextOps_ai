@@ -1,0 +1,57 @@
+Hero                                                                                                                                                          
+  Eyebrow: Automação de entrada comercial para inbound B2B
+                                                                                                                                                                
+  Headline: Cada lead do seu site chega no CRM pronto para vender                                                                                               
+                                                                                                                                                                
+  Subheadline: A ContextOps AI recebe o lead, pesquisa a empresa, organiza os sinais mais relevantes e entrega um resumo comercial com prioridade e próximo     
+  passo para o seu time agir rápido.                                                                                                                            
+                                                                                                                                                                
+  CTA principal: Agendar demonstração                                                                                                                           
+                                                                                                                                                                
+  CTA secundário: Ver como funciona                                                                                                                             
+                                                                                                                                                                
+  Apoios curtos:                                                                                                                                                
+                                                                                                                                                                
+  - Pesquisa automática da empresa                                                                                                                              
+  - Resumo comercial pronto                                                                                                                                     
+  - CRM com contexto e próximo passo                                                                                                                            
+                                                                                                                                                                
+  O que é                                                                                                                                                       
+  Título: A plataforma que trata o lead antes de ele cair cru no CRM                                                                                            
+                                                                                                                                                                
+  Texto: A solução fica entre o formulário do seu site e o CRM da sua operação. Assim que o lead entra, ela pesquisa a empresa, organiza o contexto comercial e 
+  entrega tudo de forma clara para o time comercial agir com mais velocidade.                                                                                   
+                                                                                                                                                                
+  Como funciona                                                                                                                                                 
+  Título: Do formulário ao CRM, sem pesquisa manual no meio                                                                                                     
+                                                                                                                                                                
+  Passos:                                                                                                                                                       
+                                                                                                                                                                
+  1. O lead entra pelo seu site                                                                                                                                 
+  2. A plataforma pesquisa a empresa e os sinais relevantes                                                                                                     
+  3. Monta um resumo comercial objetivo                                                                                                                         
+  4. Define prioridade e próximo passo                                                                                                                          
+  5. Entrega tudo no CRM ou fluxo de atendimento                                                                                                                
+                                                                                                                                                                
+  Benefícios                                                                                                                                                    
+  Título: O que muda na prática                                                                                                                                 
+                                                                                                                                                                
+  Bullets:                                                                                                                                                      
+                                                                                                                                                                
+  - Seu time para de perder tempo pesquisando cada lead                                                                                                         
+  - O primeiro contato acontece com mais contexto                                                                                                               
+  - A operação ganha mais clareza para decidir quem atender primeiro                                                                                            
+  - O inbound fica mais consistente, sem depender de improviso
+                                                                                                                                                                
+  Diferencial                                                                                                                                                   
+  Título: Não entrega só dados. Entrega clareza para agir.                                                                                                      
+                                                                                                                                                                
+  Texto: A diferença não está em adicionar mais campos ao cadastro. Está em mostrar para o comercial quem entrou, por que vale atenção e qual deve ser o próximo
+  passo.                                                                                                                                                        
+                                                                                                                                                                
+  CTA final                                                                                                                                                     
+  Título: Pare de mandar cadastro cru para o comercial                                                                                                          
+                                                                                                                                                                
+  Texto: Veja como cada lead pode entrar no CRM com empresa identificada, resumo comercial e orientação de atendimento desde o primeiro segundo.                
+                                                                                                                                                                
+  CTA: Agendar demonstração 
