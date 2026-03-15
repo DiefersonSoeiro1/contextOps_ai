@@ -185,18 +185,17 @@
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #a3e635 0%,
-    #d9f99d 30%,
-    #ffffff 50%,
-    #d9f99d 70%,
-    #a3e635 100%
+    #84cc16 0%,
+    #a3e635 35%,
+    #bef264 50%,
+    #a3e635 65%,
+    #84cc16 100%
   );
-  background-size: 200% auto;
+  background-size: 250% auto;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: text-shimmer 3s linear infinite;
-  filter: drop-shadow(0 0 24px rgba(163, 230, 53, 0.5));
+  animation: text-shimmer 6s ease-in-out infinite;
 }
 
 /* Subtle background pattern for hero */
