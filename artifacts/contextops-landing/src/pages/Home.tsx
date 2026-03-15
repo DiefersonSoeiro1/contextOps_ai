@@ -131,15 +131,6 @@ export default function Home() {
             <div className="relative lg:ml-auto w-full max-w-lg">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-transparent rounded-3xl blur-2xl opacity-50" />
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                className="absolute -left-6 top-10 z-20 flex items-center gap-2 bg-white border border-border shadow-lg rounded-full px-3 py-1.5 text-xs font-semibold"
-              >
-                <Zap className="w-3.5 h-3.5 text-primary-foreground" />
-                Enriquecido em 2.3s
-              </motion.div>
-              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
