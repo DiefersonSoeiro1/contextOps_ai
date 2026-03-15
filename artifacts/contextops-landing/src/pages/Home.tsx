@@ -496,26 +496,50 @@ export default function Home() {
                   icon: Building2,
                   title: "Empresas B2B com inbound recorrente",
                   desc: "Geram demanda pelo site e precisam responder com mais velocidade e contexto.",
+                  signals: [
+                    "Formulário ativo no site",
+                    "Time respondendo leads diariamente",
+                    "Primeiro contato ainda lento demais",
+                  ],
                 },
                 {
                   icon: Database,
                   title: "Times que recebem cadastro cru no CRM",
                   desc: "Hoje dependem de pesquisa manual antes de decidir a abordagem.",
+                  signals: [
+                    "SDR abre Google antes de ligar",
+                    "Lead sem contexto de empresa",
+                    "Fila sem critério de prioridade",
+                  ],
                 },
                 {
                   icon: Briefcase,
                   title: "Operações com venda consultiva",
                   desc: "Precisam entender melhor o lead antes do primeiro contato, sem aumentar trabalho manual.",
+                  signals: [
+                    "Ticket médio exige contexto antes de agir",
+                    "Abordagem genérica reduz conversão",
+                    "Pesquisa consome tempo do comercial",
+                  ],
                 },
               ].map((card, i) => (
                 <motion.div key={i} variants={itemAnim}>
                   <Card className="h-full bg-white/5 border-white/10 backdrop-blur text-white hover:bg-white/10 transition-colors">
-                    <CardContent className="p-7">
+                    <CardContent className="p-7 flex flex-col">
                       <div className="h-12 w-12 rounded-xl bg-primary/20 flex items-center justify-center mb-5">
                         <card.icon className="h-6 w-6 text-primary" />
                       </div>
                       <h3 className="font-bold text-lg mb-3 text-white">{card.title}</h3>
-                      <p className="text-white/70 text-sm leading-relaxed">{card.desc}</p>
+                      <p className="text-white/70 text-sm leading-relaxed mb-6">{card.desc}</p>
+                      <div className="mt-auto space-y-2 pt-5 border-t border-white/10">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-3">Sinais comuns</p>
+                        {card.signals.map((signal, j) => (
+                          <div key={j} className="flex items-center gap-2 text-sm text-white/70">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                            {signal}
+                          </div>
+                        ))}
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
