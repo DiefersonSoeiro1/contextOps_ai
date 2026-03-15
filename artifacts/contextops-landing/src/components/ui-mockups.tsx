@@ -1,39 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Building2, Globe, Users, Target, Zap, Factory, CheckCircle2, TrendingUp, Timer, ArrowUpRight } from "lucide-react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
-
-function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.round(v));
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const controls = animate(count, value, { duration: 1.4, ease: "easeOut" });
-    return controls.stop;
-  }, [value, count]);
-
-  return (
-    <motion.span ref={ref}>
-      {rounded.get()}{suffix}
-    </motion.span>
-  );
-}
-
-function ScoreBar({ score }: { score: number }) {
-  return (
-    <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-      <motion.div
-        className="h-full bg-primary rounded-full"
-        initial={{ width: 0 }}
-        whileInView={{ width: `${score}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-      />
-    </div>
-  );
-}
+import { Building2, Globe, Users, Target, Zap, Factory, CheckCircle2, Timer, ArrowUpRight, LayoutList } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function LeadEnrichedCard() {
   return (
@@ -104,17 +72,6 @@ export function LeadEnrichedCard() {
             <p className="text-xs leading-relaxed text-foreground/80">
               Plataforma em expansão. Levantou rodada Série A recente. Foco em ganho de eficiência na operação de marketing B2B.
             </p>
-          </div>
-
-          {/* Fit score */}
-          <div className="space-y-2 pt-1 border-t border-border/50">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center text-xs font-medium text-muted-foreground gap-1">
-                <TrendingUp className="h-3 w-3" /> Score de aderência
-              </div>
-              <span className="text-xs font-bold text-primary-foreground">87 / 100</span>
-            </div>
-            <ScoreBar score={87} />
           </div>
 
           {/* Speed metrics row */}

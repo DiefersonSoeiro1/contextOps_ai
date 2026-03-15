@@ -25,7 +25,6 @@ import {
   Briefcase,
   XCircle,
   Menu,
-  TrendingUp,
   Bot,
   Focus
 } from "lucide-react";
@@ -142,17 +141,6 @@ export default function Home() {
                 Enriquecido em 2.3s
               </motion.div>
 
-              {/* Floating stat: score */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.0, duration: 0.5 }}
-                className="absolute -right-4 top-1/3 z-20 flex items-center gap-2 bg-white border border-border shadow-lg rounded-full px-3 py-1.5 text-xs font-semibold"
-              >
-                <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
-                Score 87/100
-              </motion.div>
-
               {/* Floating stat: sent to CRM */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -222,7 +210,7 @@ export default function Home() {
                     "Nome da empresa", "Site e Presença online", 
                     "Segmento de atuação", "Porte estimado", 
                     "Links relevantes", "Resumo objetivo do negócio", 
-                    "Score de aderência", "Prioridade do lead"
+                    "Critérios de priorização", "Prioridade do lead"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 bg-white p-3 rounded-lg border border-border/50 shadow-sm">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
