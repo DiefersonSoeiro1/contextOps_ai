@@ -107,7 +107,7 @@ export default function Home() {
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
                 Seu lead não vira mais um cadastro.{" "}
-                <span className="bg-gradient-to-r from-lime-400 via-primary to-lime-300 bg-clip-text text-transparent [filter:drop-shadow(0_0_28px_rgba(163,230,53,0.55))]">Ele chega pronto para o comercial agir.</span>
+                <span className="text-shimmer">Ele chega pronto para o comercial agir.</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 A ContextOps AI recebe o lead, pesquisa a empresa, monta um resumo comercial e entrega tudo no CRM com contexto, prioridade e próximo passo.

@@ -176,6 +176,29 @@
   }
 }
 
+/* Animated shimmer sweep for headline text */
+@keyframes text-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #a3e635 0%,
+    #d9f99d 30%,
+    #ffffff 50%,
+    #d9f99d 70%,
+    #a3e635 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: text-shimmer 3s linear infinite;
+  filter: drop-shadow(0 0 24px rgba(163, 230, 53, 0.5));
+}
+
 /* Subtle background pattern for hero */
 .bg-grid-pattern {
   background-size: 40px 40px;
