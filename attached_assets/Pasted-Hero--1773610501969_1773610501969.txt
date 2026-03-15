@@ -1,0 +1,180 @@
+Hero                                                                                                                                                          
+  Eyebrow: Do formulário ao CRM, sem atrito                                                                                                                     
+                                                                                                                                                                
+  Headline: Seu lead não vira mais um cadastro. Ele chega pronto para o comercial agir.                                                                         
+                                                                                                                                                                
+  Subheadline: A ContextOps AI recebe o lead, pesquisa a empresa, monta um resumo comercial e entrega tudo no CRM com contexto, prioridade e próximo passo.     
+                                                                                                                                                                
+  CTA principal: Agendar demonstração
+  CTA secundário: Ver como funciona                                                                                                                             
+                                                                                                                                                                
+  Apoios curtos:                                                                                                                                                
+                                                                                                                                                                
+  - Pesquisa automática da empresa                                                                                                                              
+  - Resumo comercial pronto                                                                                                                                     
+  - CRM com contexto e direção                                                                                                                                  
+  - Menos pesquisa manual para o time                                                                                                                           
+                                                                                                                                                                
+  Prova / Faixa curta                                                                                                                                           
+  Texto: Para operações B2B que geram inbound pelo site e não querem mais depender de cadastro cru, pesquisa manual e achismo na primeira abordagem.            
+                                                                                                                                                                
+  Seção: O que é                                                                                                                                                
+  Título: A camada entre o lead que entra e a ação comercial que precisa acontecer                                                                              
+                                                                                                                                                                
+  Texto: A ContextOps AI fica entre o formulário do seu site e o CRM da sua operação. Assim que o lead entra, a plataforma pesquisa a empresa, organiza os      
+  sinais mais relevantes e entrega um resumo comercial objetivo para o time agir com mais velocidade e clareza.                                                 
+                                                                                                                                                                
+  Bullets:                                                                                                                                                      
+                                                                                                                                                                
+  - Recebe o lead assim que ele entra                                                                                                                           
+  - Pesquisa empresa e contexto relevante                                                                                                                       
+  - Organiza um resumo comercial claro                                                                                                                          
+  - Indica prioridade e próximo passo                                                                                                                           
+  - Entrega tudo no CRM ou fluxo de atendimento                                                                                                                 
+                                                                                                                                                                
+  Seção: O problema                                                                                                                                             
+  Título: O gargalo não está em gerar lead. Está em entender rápido quem entrou.                                                                                
+                                                                                                                                                                
+  Texto: Em muitas operações, o lead chega ao CRM como nome, e-mail e pouco mais. A partir daí, alguém do time precisa abrir site, LinkedIn, buscar contexto e  
+  decidir se vale priorizar. Esse tempo atrasa o primeiro contato e reduz a qualidade da operação.                                                              
+                                                                                                                                                                
+  Bullets:                                                                                                                                                      
+                                                                                                                                                                
+  - O CRM recebe cadastro cru                                                                                                                                   
+  - O comercial precisa investigar antes de agir                                                                                                                
+  - Leads bons e ruins entram na mesma fila                                                                                                                     
+  - A primeira abordagem começa com menos contexto do que deveria                                                                                               
+                                                                                                                                                                
+  Seção: Antes x Depois                                                                                                                                         
+  Título: O que muda na prática                                                                                                                                 
+                                                                                                                                                                
+  Coluna 1                                                                                                                                                      
+  Título: Antes                                                                                                                                                 
+  Bullets:                                                                                                                                                      
+                                                                                                                                                                
+  - O lead entra pelo site                                                                                                                                      
+  - Cai no CRM com pouca informação                                                                                                                             
+  - Alguém pesquisa manualmente a empresa
+  - O time tenta descobrir se vale atenção                                                                                                                      
+  - Só depois define abordagem e prioridade                                                                                                                     
+                                                                                                                                                                
+  Coluna 2                                                                                                                                                      
+  Título: Depois                                                                                                                                                
+  Bullets:                                                                                                                                                      
+                                                                                                                                                                
+  - O lead entra pelo site                                                                                                                                      
+  - A ContextOps AI pesquisa a empresa                                                                                                                          
+  - Monta um resumo comercial objetivo
+  - Define prioridade e próximo passo                                                                                                                           
+  - Entrega tudo no CRM pronto para ação                                                                                                                        
+                                                                                                                                                                
+  Seção: O que sua operação passa a receber                                                                                                                     
+  Título: Seu time deixa de receber cadastro. Passa a receber contexto.                                                                                         
+                                                                                                                                                                
+  Bloco 1                                                                                                                                                       
+  Título: Empresa identificada                                                                                                                                  
+  Texto: Nome da empresa, site, segmento, porte estimado e sinais que ajudam o time a entender rapidamente com quem está falando.                               
+                                                                                                                                                                
+  Bloco 2                                                                                                                                                       
+  Título: Resumo comercial pronto                                                                                                                               
+  Texto: Uma leitura curta e objetiva sobre o negócio, com contexto útil para a primeira abordagem comercial.                                                   
+                                                                                                                                                                
+  Bloco 3                                                                                                                                                       
+  Título: Direção de atendimento                                                                                                                                
+  Texto: Prioridade, encaminhamento e próximo passo dentro do fluxo atual da operação.                                                                          
+                                                                                                                                                                
+  Seção: Diferenciais                                                                                                                                           
+  Título: Não é só dado. É clareza para agir.                                                                                                                   
+                                                                                                                                                                
+  Texto: A diferença não está em adicionar mais campos ao lead. Está em entregar contexto comercial pronto, no lugar certo, para o time saber quem entrou e como
+  avançar.
+                                                                                                                                                                
+  Bullets:                                                                                                                                                      
+                                                                                                                                                                
+  - Menos cadastro cru                                                                                                                                          
+  - Menos pesquisa manual                                                                                                                                       
+  - Mais contexto na primeira leitura                                                                                                                           
+  - Mais clareza para o comercial agir                                                                                                                          
+  - Sem trocar o CRM que sua operação já usa                                                                                                                    
+                                                                                                                                                                
+  Seção: Para quem faz sentido                                                                                                                                  
+  Título: Feito para operações que não podem perder tempo na entrada comercial                                                                                  
+                                                                                                                                                                
+  Cards:                                                                                                                                                        
+                                                                                                                                                                
+  - Empresas B2B com inbound recorrente                                                                                                                         
+    Geram demanda pelo site e precisam responder com mais velocidade e contexto.                                                                                
+  - Times que recebem cadastro cru no CRM
+    Hoje dependem de pesquisa manual antes de decidir a abordagem.                                                                                              
+  - Operações com venda consultiva                                                                                                                              
+    Precisam entender melhor o lead antes do primeiro contato, sem aumentar trabalho manual.                                                                    
+                                                                                                                                                                
+  Seção: Como funciona                                                                                                                                          
+  Título: Como entra na sua operação
+                                                                                                                                                                
+  Texto: A implantação é feita para se encaixar no processo atual, sem pedir uma troca completa de stack.                                                       
+                                                                                                                                                                
+  Passos:                                                                                                                                                       
+                                                                                                                                                                
+  1. Mapeamos como os leads entram hoje                                                                                                                         
+  2. Definimos quais informações importam para a operação                                                                                                       
+  3. Conectamos formulário, webhook ou CRM                                                                                                                      
+  4. Configuramos a lógica de contexto e encaminhamento                                                                                                         
+  5. Validamos os primeiros leads processados                                                                                                                   
+  6. Ajustamos antes de escalar                                                                                                                                 
+                                                                                                                                                                
+  Seção: Comparação com alternativas                                                                                                                            
+  Título: Por que não deixar isso só no CRM?                                                                                                                    
+                                                                                                                                                                
+  Blocos:                                                                                                                                                       
+                                                                                                                                                                
+  - CRM sozinho                                                                                                                                                 
+    Guarda e organiza contatos, mas normalmente recebe o lead ainda cru.                                                                                        
+  - Pesquisa manual                                                                                                                                             
+    Até funciona, mas consome tempo do comercial e não escala bem.                                                                                              
+  - ContextOps AI                                                                                                                                               
+    Trata o lead antes da ação comercial e entrega contexto pronto no fluxo certo.                                                                              
+                                                                                                                                                                
+  Depoimentos                                                                                                                                                   
+  Título: O tipo de resultado que essa operação destrava                                                                                                        
+                                                                                                                                                                
+  Depoimento 1:                                                                                                                                                 
+  “Antes, o time precisava descobrir quem era a empresa antes de começar. Agora o lead já entra com contexto suficiente para agir rápido.”                      
+  Mariana Lopes, Head de Receita                                                                                                                                
+                                                                                                                                                                
+  Depoimento 2:                                                                                                                                                 
+  “A entrada comercial ficou muito mais clara. O CRM deixou de ser um depósito de cadastro e passou a receber oportunidade melhor organizada.”                  
+  Felipe Andrade, Diretor Comercial                                                                                                                             
+                                                                                                                                                                
+  Depoimento 3:                                                                                                                                                 
+  “O ganho não foi só velocidade. Foi qualidade na primeira abordagem.”                                                                                         
+  Renata Costa, Revenue Operations                                                                                                                              
+                                                                                                                                                                
+  FAQ
+  Isso substitui meu CRM?                                                                                                                                       
+  Não. A ContextOps AI entra antes do CRM e envia o lead com contexto, prioridade e próximo passo.                                                              
+                                                                                                                                                                
+  Preciso trocar meu formulário atual?                                                                                                                          
+  Não necessariamente. A integração pode ser feita com o fluxo que você já usa hoje.                                                                            
+                                                                                                                                                                
+  Isso serve para outbound?                                                                                                                                     
+  Não é o foco. A solução foi pensada para melhorar a entrada e o tratamento dos leads inbound.                                                                 
+                                                                                                                                                                
+  O que exatamente o time recebe?                                                                                                                               
+  Empresa identificada, resumo comercial, prioridade e orientação de atendimento dentro do fluxo atual.                                                         
+                                                                                                                                                                
+  Funciona para qualquer empresa?                                                                                                                               
+  Funciona melhor em operações B2B com inbound e processo comercial consultivo.                                                                                 
+                                                                                                                                                                
+  CTA Final                                                                                                                                                     
+  Eyebrow: Pronto para ver na prática                                                                                                                           
+                                                                                                                                                                
+  Título: Pare de mandar cadastro cru para o comercial                                                                                                          
+                                                                                                                                                                
+  Texto: Veja como cada lead pode entrar no CRM com empresa identificada, resumo comercial e próximo passo desde o primeiro segundo.                            
+                                                                                                                                                                
+  CTA principal: Agendar demonstração                                                                                                                           
+  CTA secundário: Ver como funciona                                                                                                                             
+                                                                                                                                                                
+  Footer curto                                                                                                                                                  
+  ContextOps AI                            
