@@ -1,0 +1,11 @@
+packages:
+  "framer-motion": "For high-quality smooth scroll animations and section reveals"
+  "@radix-ui/react-accordion": "Required for the shadcn accordion component used in the FAQ section"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging tailwind classes safely"
+
+images: []
+
+notes:
+  - This is a static landing page with no backend dependencies.
+  - All visual elements use Lucide icons and pure CSS for mockups to ensure maximum sharpness and responsive behavior.

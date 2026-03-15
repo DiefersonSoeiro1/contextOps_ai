@@ -1,0 +1,167 @@
+# ContextOps AI - Landing Page Copy (mercado brasileiro)
+
+## Hero
+**Headline:** Seu time comercial recebe o lead ja pesquisado e priorizado
+
+**Subheadline:** Quando um lead entra no formulario do seu site, a plataforma busca contexto da empresa, organiza as informacoes mais relevantes e envia tudo para o CRM com mais clareza para a equipe agir rapido.
+
+**Primary CTA:** Agendar demonstracao
+
+**Secondary CTA:** Ver como funciona
+
+**Apoio curto:**
+- Mais contexto para vender
+- Menos pesquisa manual
+- Melhor priorizacao de inbound
+
+---
+
+## O que e
+**Titulo:** Uma camada de inteligencia para leads inbound
+
+**Texto:** A solucao fica entre o formulario do seu site e o CRM da sua operacao. Ela recebe o lead, busca dados complementares, organiza um resumo comercial e ajuda sua equipe a entender mais rapido quem vale atencao primeiro.
+
+**O que faz:**
+- Captura o lead assim que ele entra
+- Busca informacoes complementares da empresa
+- Organiza contexto comercial de forma objetiva
+- Classifica o lead conforme criterios definidos
+- Envia o resultado para o CRM ou fluxo comercial
+
+---
+
+## O que sua operacao passa a receber
+**Texto:** Em vez de trabalhar apenas com nome, email e telefone, seu time pode receber o lead com mais contexto para decidir a abordagem inicial.
+
+**Exemplos de informacao:**
+- Nome da empresa
+- Site
+- Segmento
+- Porte estimado
+- Links relevantes
+- Resumo objetivo do negocio
+- Sinais de aderencia
+- Prioridade do lead
+
+---
+
+## O que nao e
+**Titulo:** O que isso nao e
+
+**Texto:** A proposta aqui nao e substituir toda a sua stack comercial, nem vender uma promessa generica de dados.
+
+**Bullets:**
+- Nao e um CRM
+- Nao e uma ferramenta de prospeccao outbound
+- Nao e uma base massiva de contatos
+- Nao substitui o processo comercial da sua equipe
+- Nao gera demanda por conta propria
+- Nao promete volume de leads, e sim mais contexto e melhor triagem dos leads que ja entram
+
+---
+
+## Problema
+**Titulo:** O problema nao e falta de lead. E falta de contexto no momento certo.
+
+**Texto:** Em muitas operacoes, o lead entra e o time precisa parar para pesquisar manualmente antes de agir. Isso consome tempo, atrasa o contato e reduz a qualidade da priorizacao.
+
+**Fluxo atual:**
+1. O lead entra no formulario
+2. Alguem tenta descobrir quem e a empresa
+3. Pesquisa site, LinkedIn e informacoes publicas
+4. Decide se vale a pena atender
+5. So entao comeca o contato
+
+**Fechamento:** Esse processo tira tempo de venda e mistura leads promissores com leads sem prioridade.
+
+---
+
+## Solucao
+**Titulo:** O lead ja chega mais claro para quem vai vender
+
+**Texto:** A ideia e simples: automatizar a etapa de pesquisa e organizacao inicial para que o time comercial receba o lead mais pronto para acao.
+
+**Fluxo novo:**
+1. O lead preenche o formulario no seu site
+2. A plataforma recebe os dados capturados
+3. O sistema busca informacoes complementares em fontes publicas e integracoes disponiveis
+4. Os dados sao organizados em um brief comercial objetivo
+5. O lead recebe prioridade conforme os criterios definidos
+6. O resultado vai para o CRM ou fluxo de atendimento
+
+---
+
+## Beneficios
+**Titulo:** O ganho para a operacao
+
+- Menos tempo gasto pesquisando lead manualmente
+- Mais velocidade no primeiro contato
+- Melhor triagem comercial
+- Mais contexto para a abordagem inicial
+- Mais foco nos leads com maior potencial
+- Mais consistencia no processo de inbound
+
+---
+
+## Para quem faz sentido
+**Bullets:**
+- Empresas B2B que geram leads pelo site
+- Times comerciais com inbound recorrente
+- Operacoes que usam CRM e querem enriquecer o lead na entrada
+- Empresas com venda consultiva
+- Times que precisam priorizar melhor sem aumentar trabalho manual
+
+---
+
+## Como entra na sua operacao
+**Texto:** A implantacao e pensada para se encaixar no processo atual, sem exigir uma mudanca completa de ferramenta.
+
+**Passos:**
+1. Mapeamos como os leads entram hoje
+2. Definimos quais informacoes sao relevantes para sua operacao
+3. Conectamos formulario, webhook ou CRM
+4. Configuramos a logica de enriquecimento e prioridade
+5. Validamos os primeiros leads processados
+6. Ajustamos antes de escalar
+
+**Fechamento:** O objetivo e colocar o fluxo para rodar com o menor atrito possivel.
+
+---
+
+## Diferencial
+**Titulo:** Nao e so dado. E contexto para decisao comercial.
+
+**Texto:** A diferenca nao esta apenas em adicionar campos ao lead. Esta em ajudar sua equipe a entender mais rapido com quem esta falando e como priorizar o atendimento.
+
+**Bullets:**
+- Menos dado solto
+- Mais contexto organizado
+- Menos esforco manual
+- Mais clareza para agir
+
+---
+
+## CTA final
+**Titulo:** Se seu time ainda pesquisa manualmente cada lead que entra, ja existe uma forma melhor de operar
+
+**Texto:** Veja como sua operacao pode receber leads inbound com mais contexto, mais prioridade e mais clareza desde o primeiro momento.
+
+**CTA:** Agendar demonstracao
+
+---
+
+## FAQ
+**Isso substitui meu CRM?**
+Nao. A solucao complementa o CRM, enviando o lead com mais contexto e prioridade.
+
+**Preciso trocar meu formulario atual?**
+Nao necessariamente. A integracao pode ser feita com o fluxo que voce ja usa.
+
+**Isso serve para prospeccao outbound?**
+Nao e o foco principal. A solucao foi pensada para qualificar melhor os leads inbound que ja entram na sua operacao.
+
+**Isso funciona para qualquer empresa?**
+Funciona melhor em operacoes B2B com inbound e processo comercial consultivo.
+
+**O objetivo e enriquecer dado ou qualificar lead?**
+Os dois, mas o valor principal esta em transformar informacao dispersa em contexto util para decisao comercial.
