@@ -87,7 +87,7 @@ export default function Home() {
       <main className="pt-16">
         
         {/* HERO */}
-        <section className="relative pt-24 pb-32 lg:pt-36 lg:pb-40 px-4 overflow-hidden">
+        <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-32 px-4 overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_top,white,transparent_70%)]" />
           <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
           
