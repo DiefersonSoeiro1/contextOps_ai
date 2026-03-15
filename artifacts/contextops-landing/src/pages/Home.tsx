@@ -18,15 +18,16 @@ import {
   Target,
   LineChart,
   BrainCircuit,
-  Focus,
   CheckCircle2,
   Building2,
   Users,
   Database,
   Briefcase,
-  Bot,
   XCircle,
-  Menu
+  Menu,
+  TrendingUp,
+  Bot,
+  Focus
 } from "lucide-react";
 import { LeadEnrichedCard, FlowComparison } from "@/components/ui-mockups";
 
@@ -129,6 +130,40 @@ export default function Home() {
 
             <div className="relative lg:ml-auto w-full max-w-lg">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-transparent rounded-3xl blur-2xl opacity-50" />
+
+              {/* Floating stat: speed */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="absolute -left-6 top-10 z-20 flex items-center gap-2 bg-white border border-border shadow-lg rounded-full px-3 py-1.5 text-xs font-semibold"
+              >
+                <Zap className="w-3.5 h-3.5 text-primary-foreground" />
+                Enriquecido em 2.3s
+              </motion.div>
+
+              {/* Floating stat: score */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.0, duration: 0.5 }}
+                className="absolute -right-4 top-1/3 z-20 flex items-center gap-2 bg-white border border-border shadow-lg rounded-full px-3 py-1.5 text-xs font-semibold"
+              >
+                <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
+                Score 87/100
+              </motion.div>
+
+              {/* Floating stat: sent to CRM */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-primary text-primary-foreground shadow-lg shadow-primary/30 rounded-full px-4 py-1.5 text-xs font-bold whitespace-nowrap"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                Enviado ao CRM automaticamente
+              </motion.div>
+
               <LeadEnrichedCard />
             </div>
           </div>
@@ -187,7 +222,7 @@ export default function Home() {
                     "Nome da empresa", "Site e Presença online", 
                     "Segmento de atuação", "Porte estimado", 
                     "Links relevantes", "Resumo objetivo do negócio", 
-                    "Sinais de aderência", "Prioridade do lead"
+                    "Score de aderência", "Prioridade do lead"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 bg-white p-3 rounded-lg border border-border/50 shadow-sm">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
