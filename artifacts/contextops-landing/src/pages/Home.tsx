@@ -741,7 +741,6 @@ export default function Home() {
               <div className="flex justify-center">
                 <WaitlistForm dark />
               </div>
-              <p className="mt-4 text-sm text-white/40">Sem compromisso. Avisamos quando o lançamento estiver próximo.</p>
             </motion.div>
           </div>
         </section>
