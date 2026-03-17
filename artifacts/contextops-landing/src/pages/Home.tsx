@@ -1,4 +1,6 @@
 import { useState } from "react";
+import logoClaro from "@assets/contextsales_logo_claro_1773711588776.png";
+import logoEscuro from "@assets/contextsales_logo_escuro_1773711586243.png";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -106,11 +108,8 @@ export default function Home() {
       {/* NAVBAR */}
       <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-border/40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-lg shadow-sm">
-              <Zap className="w-5 h-5 fill-current" />
-            </div>
-            <span className="font-bold text-xl tracking-tight">ContextSales</span>
+          <div className="flex items-center">
+            <img src={logoClaro} alt="ContextSales" className="h-8 w-auto" />
           </div>
           
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -709,11 +708,8 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-foreground text-white/60 py-12 px-4 border-t border-white/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 text-white">
-            <div className="bg-primary text-primary-foreground p-1 rounded-md">
-              <Zap className="w-4 h-4 fill-current" />
-            </div>
-            <span className="font-bold text-lg tracking-tight">ContextSales</span>
+          <div className="flex items-center">
+            <img src={logoEscuro} alt="ContextSales" className="h-7 w-auto" />
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <a href="#o-que-e" className="hover:text-white transition-colors">O que é</a>
