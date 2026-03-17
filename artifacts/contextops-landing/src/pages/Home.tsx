@@ -21,7 +21,6 @@ import {
   XCircle,
   Menu,
   BrainCircuit,
-  MessageSquareQuote,
   Database,
   Clock,
   LayoutList,
@@ -62,36 +61,39 @@ function WaitlistForm({ dark = false }: { dark?: boolean }) {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className={`flex items-center gap-3 px-5 py-3.5 rounded-xl ${dark ? "bg-white/10 border border-white/20" : "bg-primary/10 border border-primary/20"}`}
+        className={`flex items-center gap-3 px-5 py-4 rounded-2xl ${dark ? "bg-white/10 border border-white/20" : "bg-primary/8 border border-primary/20"}`}
       >
-        <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-        <span className={`font-semibold text-sm ${dark ? "text-white" : "text-foreground"}`}>
-          Feito! Você está na lista. Avisamos quando abrir.
-        </span>
+        <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+          <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
+        </div>
+        <div>
+          <p className={`font-bold text-sm ${dark ? "text-white" : "text-foreground"}`}>Você está na lista!</p>
+          <p className={`text-xs mt-0.5 ${dark ? "text-white/60" : "text-muted-foreground"}`}>Avisamos assim que o ContextSales abrir para novos acessos.</p>
+        </div>
       </motion.div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2.5 w-full max-w-lg">
       <input
         type="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="seu@email.com"
-        className={`flex-1 h-12 px-4 rounded-xl text-sm font-medium outline-none transition-all border ${
+        placeholder="Digite seu e-mail profissional"
+        className={`flex-1 h-13 px-5 rounded-2xl text-sm font-medium outline-none transition-all border-2 ${
           dark
-            ? "bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-primary focus:bg-white/15"
-            : "bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+            ? "bg-white/8 border-white/15 text-white placeholder:text-white/35 focus:border-primary/70 focus:bg-white/12"
+            : "bg-white border-border/60 text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:ring-4 focus:ring-primary/10 shadow-sm"
         }`}
       />
       <Button
         type="submit"
         size="lg"
-        className="h-12 px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm shadow-lg shadow-primary/20 hover-elevate shrink-0"
+        className="h-13 px-7 bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm shadow-lg shadow-primary/25 hover-elevate shrink-0 rounded-2xl"
       >
-        Entrar na lista <ArrowRight className="ml-1.5 w-4 h-4" />
+        Quero entrar na lista <ArrowRight className="ml-1.5 w-4 h-4" />
       </Button>
     </form>
   );
@@ -160,8 +162,13 @@ export default function Home() {
               </p>
 
               <div id="lista-espera" className="mb-10">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Lista de espera para o lançamento</p>
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground mb-3">
+                  <span className="w-3 h-px bg-border" />
+                  Em lançamento — garanta seu acesso antecipado
+                  <span className="w-3 h-px bg-border" />
+                </div>
                 <WaitlistForm />
+                <p className="mt-3 text-xs text-muted-foreground/60">Gratuito para os primeiros. Avisamos quando abrir.</p>
               </div>
 
               <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-muted-foreground">
@@ -625,53 +632,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* DEPOIMENTOS */}
-        <section className="py-24 px-4 bg-muted/30">
-          <div className="max-w-6xl mx-auto">
-            <motion.div {...fadeIn} className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold">O tipo de resultado que essa operação destrava</h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerChildren}
-              initial="initial"
-              whileInView="whileInView"
-              className="grid md:grid-cols-3 gap-6"
-            >
-              {[
-                {
-                  quote: "Antes, o time precisava descobrir quem era a empresa antes de começar. Agora o lead já entra com contexto suficiente para agir rápido.",
-                  name: "Mariana Lopes",
-                  role: "Head de Receita",
-                },
-                {
-                  quote: "A entrada comercial ficou muito mais clara. O CRM deixou de ser um depósito de cadastro e passou a receber oportunidade melhor organizada.",
-                  name: "Felipe Andrade",
-                  role: "Diretor Comercial",
-                },
-                {
-                  quote: "O ganho não foi só velocidade. Foi qualidade na primeira abordagem.",
-                  name: "Renata Costa",
-                  role: "Revenue Operations",
-                },
-              ].map((t, i) => (
-                <motion.div key={i} variants={itemAnim}>
-                  <Card className="h-full bg-white border-border/50 shadow-sm">
-                    <CardContent className="p-7 flex flex-col">
-                      <MessageSquareQuote className="w-8 h-8 text-primary mb-5 shrink-0" />
-                      <p className="text-foreground/80 leading-relaxed mb-6 flex-1 italic">"{t.quote}"</p>
-                      <div>
-                        <p className="font-bold text-foreground">{t.name}</p>
-                        <p className="text-sm text-muted-foreground">{t.role}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
         </section>
 
