@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,7 +17,6 @@ import {
   Target,
   CheckCircle2,
   Building2,
-  Users,
   Briefcase,
   XCircle,
   Menu,
@@ -48,6 +48,55 @@ const itemAnim = {
   whileInView: { opacity: 1, y: 0 }
 };
 
+function WaitlistForm({ dark = false }: { dark?: boolean }) {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className={`flex items-center gap-3 px-5 py-3.5 rounded-xl ${dark ? "bg-white/10 border border-white/20" : "bg-primary/10 border border-primary/20"}`}
+      >
+        <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+        <span className={`font-semibold text-sm ${dark ? "text-white" : "text-foreground"}`}>
+          Feito! Você está na lista. Avisamos quando abrir.
+        </span>
+      </motion.div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+      <input
+        type="email"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="seu@email.com"
+        className={`flex-1 h-12 px-4 rounded-xl text-sm font-medium outline-none transition-all border ${
+          dark
+            ? "bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-primary focus:bg-white/15"
+            : "bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+        }`}
+      />
+      <Button
+        type="submit"
+        size="lg"
+        className="h-12 px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm shadow-lg shadow-primary/20 hover-elevate shrink-0"
+      >
+        Entrar na lista <ArrowRight className="ml-1.5 w-4 h-4" />
+      </Button>
+    </form>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans overflow-x-hidden">
@@ -59,7 +108,7 @@ export default function Home() {
             <div className="bg-primary text-primary-foreground p-1.5 rounded-lg shadow-sm">
               <Zap className="w-5 h-5 fill-current" />
             </div>
-            <span className="font-bold text-xl tracking-tight">ContextOps</span>
+            <span className="font-bold text-xl tracking-tight">ContextSales</span>
           </div>
           
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -69,14 +118,11 @@ export default function Home() {
             <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="font-semibold text-foreground hover-elevate">
-              Entrar
+          <a href="#lista-espera">
+            <Button className="hidden md:flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold hover-elevate shadow-lg shadow-primary/20">
+              Entrar na lista
             </Button>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold hover-elevate shadow-lg shadow-primary/20">
-              Agendar demonstração
-            </Button>
-          </div>
+          </a>
 
           <Button variant="ghost" size="icon" className="md:hidden">
             <Menu className="w-6 h-6" />
@@ -110,16 +156,14 @@ export default function Home() {
                 <span className="text-shimmer">Ele chega pronto para o comercial agir.</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                A ContextOps AI recebe o lead, pesquisa a empresa, monta um resumo comercial e entrega tudo no CRM com contexto, prioridade e próximo passo.
+                O ContextSales recebe o lead, pesquisa a empresa, monta um resumo comercial e entrega tudo no CRM com contexto, prioridade e próximo passo.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-base h-14 px-8 shadow-xl shadow-primary/20 hover-elevate">
-                  Agendar demonstração <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button size="lg" variant="outline" className="h-14 px-8 font-semibold text-base bg-white hover-elevate border-border/80">
-                  Ver como funciona
-                </Button>
+
+              <div id="lista-espera" className="mb-10">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Lista de espera para o lançamento</p>
+                <WaitlistForm />
               </div>
+
               <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-muted-foreground">
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary shrink-0" /> Pesquisa automática da empresa</span>
                 <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary shrink-0" /> Resumo comercial pronto</span>
@@ -163,7 +207,7 @@ export default function Home() {
                   A camada entre o lead que entra e a ação comercial que precisa acontecer
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  A ContextOps AI fica entre o formulário do seu site e o CRM da sua operação. Assim que o lead entra, a plataforma pesquisa a empresa, organiza os sinais mais relevantes e entrega um resumo comercial objetivo para o time agir com mais velocidade e clareza.
+                  O ContextSales fica entre o formulário do seu site e o CRM da sua operação. Assim que o lead entra, a plataforma pesquisa a empresa, organiza os sinais mais relevantes e entrega um resumo comercial objetivo para o time agir com mais velocidade e clareza.
                 </p>
                 <div className="space-y-3">
                   {[
@@ -244,11 +288,11 @@ export default function Home() {
               >
                 <div className="space-y-4 text-sm text-muted-foreground">
                   {[
-                    { step: "1", text: "Lead entra pelo formulário", done: false },
-                    { step: "2", text: "Cai no CRM com nome, e-mail e nada mais", done: false },
-                    { step: "3", text: "SDR abre LinkedIn, site, busca no Google...", done: false },
-                    { step: "4", text: "Tenta decidir se vale a pena responder", done: false },
-                    { step: "5", text: "Só então começa a pensar na abordagem", done: false },
+                    { step: "1", text: "Lead entra pelo formulário" },
+                    { step: "2", text: "Cai no CRM com nome, e-mail e nada mais" },
+                    { step: "3", text: "SDR abre LinkedIn, site, busca no Google..." },
+                    { step: "4", text: "Tenta decidir se vale a pena responder" },
+                    { step: "5", text: "Só então começa a pensar na abordagem" },
                   ].map(({ step, text }, i) => (
                     <div key={i} className="flex items-center gap-4 py-3 border-b border-border/40 last:border-0">
                       <div className="w-7 h-7 rounded-full bg-muted border border-border/50 flex items-center justify-center shrink-0 text-xs font-bold text-muted-foreground">
@@ -317,7 +361,7 @@ export default function Home() {
                 <div className="space-y-4">
                   {[
                     "O lead entra pelo site",
-                    "A ContextOps AI pesquisa a empresa",
+                    "O ContextSales pesquisa a empresa",
                     "Monta um resumo comercial objetivo",
                     "Define prioridade e próximo passo",
                     "Entrega tudo no CRM pronto para ação",
@@ -438,7 +482,7 @@ export default function Home() {
                     highlight: false,
                   },
                   {
-                    label: "ContextOps AI",
+                    label: "ContextSales",
                     desc: "Trata o lead antes da ação comercial e entrega contexto pronto no fluxo certo.",
                     highlight: true,
                   },
@@ -643,7 +687,7 @@ export default function Home() {
                 {[
                   {
                     q: "Isso substitui meu CRM?",
-                    a: "Não. A ContextOps AI entra antes do CRM e envia o lead com contexto, prioridade e próximo passo.",
+                    a: "Não. O ContextSales entra antes do CRM e envia o lead com contexto, prioridade e próximo passo.",
                   },
                   {
                     q: "Preciso trocar meu formulário atual?",
@@ -694,14 +738,10 @@ export default function Home() {
               <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
                 Veja como cada lead pode entrar no CRM com empresa identificada, resumo comercial e próximo passo desde o primeiro segundo.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg h-16 px-10 rounded-full shadow-[0_0_40px_rgba(173,255,47,0.3)] hover:shadow-[0_0_60px_rgba(173,255,47,0.4)] hover:-translate-y-1 transition-all duration-300">
-                  Agendar demonstração <ArrowRight className="ml-2 w-6 h-6" />
-                </Button>
-                <Button size="lg" variant="outline" className="h-16 px-10 rounded-full font-semibold text-lg text-white border-white/20 bg-white/5 hover:bg-white/10">
-                  Ver como funciona
-                </Button>
+              <div className="flex justify-center">
+                <WaitlistForm dark />
               </div>
+              <p className="mt-4 text-sm text-white/40">Sem compromisso. Avisamos quando o lançamento estiver próximo.</p>
             </motion.div>
           </div>
         </section>
@@ -714,7 +754,7 @@ export default function Home() {
             <div className="bg-primary text-primary-foreground p-1 rounded-md">
               <Zap className="w-4 h-4 fill-current" />
             </div>
-            <span className="font-bold text-lg tracking-tight">ContextOps AI</span>
+            <span className="font-bold text-lg tracking-tight">ContextSales</span>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <a href="#o-que-e" className="hover:text-white transition-colors">O que é</a>
@@ -722,7 +762,7 @@ export default function Home() {
             <a href="#para-quem" className="hover:text-white transition-colors">Para quem</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
-          <p className="text-sm text-white/40">© 2025 ContextOps AI</p>
+          <p className="text-sm text-white/40">© 2025 ContextSales</p>
         </div>
       </footer>
     </div>
