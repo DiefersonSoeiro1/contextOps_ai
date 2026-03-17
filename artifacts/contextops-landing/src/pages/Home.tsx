@@ -1,6 +1,4 @@
 import { useState } from "react";
-import logoClaro from "@assets/contextsales_logo_claro_1773711588776.png";
-import logoEscuro from "@assets/contextsales_logo_escuro_1773711586243.png";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -48,6 +46,23 @@ const itemAnim = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 }
 };
+
+function Logo({ white = false }: { white?: boolean }) {
+  const lime = "hsl(84 100% 59%)";
+  const textColor = white ? "#ffffff" : "hsl(0 0% 9%)";
+  const iconBack = white ? "rgba(255,255,255,0.28)" : "hsl(60 5% 72%)";
+
+  return (
+    <svg viewBox="0 0 212 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ContextSales">
+      <rect x="1" y="1" width="25" height="25" rx="5" stroke={iconBack} strokeWidth="2.4" />
+      <rect x="11" y="11" width="25" height="25" rx="5" stroke={lime} strokeWidth="2.4" />
+      <circle cx="28.5" cy="18" r="2.6" fill={lime} />
+      <text x="46" y="29" fontFamily="Inter, sans-serif" fontWeight="800" fontSize="22" letterSpacing="-0.5">
+        <tspan fill={textColor}>Context</tspan><tspan fill={lime}>Sales</tspan>
+      </text>
+    </svg>
+  );
+}
 
 function WaitlistForm({ dark = false }: { dark?: boolean }) {
   const [email, setEmail] = useState("");
@@ -109,7 +124,9 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-border/40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center">
-            <img src={logoClaro} alt="ContextSales" className="h-8 w-auto" style={{ filter: "hue-rotate(-32deg) saturate(1.5)" }} />
+            <div className="h-8" style={{ aspectRatio: "212/40" }}>
+              <Logo />
+            </div>
           </div>
           
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -709,7 +726,9 @@ export default function Home() {
       <footer className="bg-foreground text-white/60 py-12 px-4 border-t border-white/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
-            <img src={logoEscuro} alt="ContextSales" className="h-7 w-auto" style={{ filter: "hue-rotate(-32deg) saturate(1.5)" }} />
+            <div className="h-7" style={{ aspectRatio: "212/40" }}>
+              <Logo white />
+            </div>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <a href="#o-que-e" className="hover:text-white transition-colors">O que é</a>
