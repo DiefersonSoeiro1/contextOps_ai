@@ -109,7 +109,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-border/40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center">
-            <img src={logoClaro} alt="ContextSales" className="h-8 w-auto" />
+            <img src={logoClaro} alt="ContextSales" className="h-8 w-auto" style={{ filter: "hue-rotate(-32deg) saturate(1.5)" }} />
           </div>
           
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -709,7 +709,7 @@ export default function Home() {
       <footer className="bg-foreground text-white/60 py-12 px-4 border-t border-white/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
-            <img src={logoEscuro} alt="ContextSales" className="h-7 w-auto" />
+            <img src={logoEscuro} alt="ContextSales" className="h-7 w-auto" style={{ filter: "hue-rotate(-32deg) saturate(1.5)" }} />
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <a href="#o-que-e" className="hover:text-white transition-colors">O que é</a>
